@@ -1,18 +1,5 @@
 const mongoose = require('mongoose');
 
-const userSchema = mongoose.Schema({
-  username: {
-    type: String,
-    required: true,
-  },
-  password: {
-    type: String,
-    required: true,
-  },
-  applications: [applicationSchema], //! embedding the applicationSchema here
-});
-
-
 const applicationSchema = new mongoose.Schema({
   company: {
     type: String,
@@ -33,6 +20,20 @@ const applicationSchema = new mongoose.Schema({
     enum: ['interested', 'applied', 'interviewing', 'rejected', 'accepted'],
   },
 });
+
+const userSchema = mongoose.Schema({
+  username: {
+    type: String,
+    required: true,
+  },
+  password: {
+    type: String,
+    required: true,
+  },
+  applications: [applicationSchema], //! embedding the applicationSchema here
+});
+
+
 
 
 const User = mongoose.model('User', userSchema);
